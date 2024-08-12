@@ -7,6 +7,8 @@
 
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <DocumentationFile>$(MSBuildThisFileDirectory)Assignment.Test.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

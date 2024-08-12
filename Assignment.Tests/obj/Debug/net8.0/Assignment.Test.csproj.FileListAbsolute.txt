@@ -694,3 +694,4 @@ D:\Rsystems_Project\Assignment\Assignment-Api\Assignment.Tests\obj\Debug\net8.0\
 D:\Rsystems_Project\Assignment\Assignment-Api\Assignment.Tests\obj\Debug\net8.0\Assignment.Test.pdb
 D:\Rsystems_Project\Assignment\Assignment-Api\Assignment.Tests\obj\Debug\net8.0\Assignment.Test.genruntimeconfig.cache
 D:\Rsystems_Project\Assignment\Assignment-Api\Assignment.Tests\obj\Debug\net8.0\ref\Assignment.Test.dll
+D:\Rsystems_Project\Assignment\Assignment-Api\Assignment.Tests\bin\Debug\net8.0\Assignment.Test.xml
