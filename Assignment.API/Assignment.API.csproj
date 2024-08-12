@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <InvariantGlobalization>true</InvariantGlobalization>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
-    <DocumentationFile>\Assignment.API\Assignment.API.xml</DocumentationFile>
+    <DocumentationFile>$(MSBuildThisFileDirectory)Assignment.API.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
