@@ -5,6 +5,8 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <InvariantGlobalization>true</InvariantGlobalization>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <DocumentationFile>C:\Users\loken\OneDrive\Desktop\assignment-main\Assignment\assignment-api\Assignment.API\Assignment.API.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

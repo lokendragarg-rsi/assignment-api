@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Assignment.API</name>
+    </assembly>
+    <members>
+        <member name="M:Assignment.API.Controllers.StoryController.#ctor(Assignment.Services.StoryServices.IStoryService,Microsoft.Extensions.Caching.Memory.IMemoryCache)">
+            <summary>
+            The Story controller
+            </summary>
+            <param name="storyService"></param>
+            <param name="memoryCache"></param>
+        </member>
+        <member name="M:Assignment.API.Controllers.StoryController.GetStoryDetails(System.Int32)">
+            <summary>
+            The get story details
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
