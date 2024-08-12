@@ -33,11 +33,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\loken\\OneDrive\\Desktop\\assignment-main\\Assignment\\assignment-api\\Assignment.Framework\\Assignment.Framework.csproj",
+      "projectUniqueName": "D:\\Rsystems_Project\\Assignment\\Assignment-Api\\Assignment.Framework\\Assignment.Framework.csproj",
       "projectName": "Assignment.Framework",
-      "projectPath": "C:\\Users\\loken\\OneDrive\\Desktop\\assignment-main\\Assignment\\assignment-api\\Assignment.Framework\\Assignment.Framework.csproj",
+      "projectPath": "D:\\Rsystems_Project\\Assignment\\Assignment-Api\\Assignment.Framework\\Assignment.Framework.csproj",
       "packagesPath": "C:\\Users\\loken\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\loken\\OneDrive\\Desktop\\assignment-main\\Assignment\\assignment-api\\Assignment.Framework\\obj\\",
+      "outputPath": "D:\\Rsystems_Project\\Assignment\\Assignment-Api\\Assignment.Framework\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -59,8 +59,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\loken\\OneDrive\\Desktop\\assignment-main\\Assignment\\assignment-api\\Assignment.Dto\\Assignment.Dto.csproj": {
-              "projectPath": "C:\\Users\\loken\\OneDrive\\Desktop\\assignment-main\\Assignment\\assignment-api\\Assignment.Dto\\Assignment.Dto.csproj"
+            "D:\\Rsystems_Project\\Assignment\\Assignment-Api\\Assignment.Dto\\Assignment.Dto.csproj": {
+              "projectPath": "D:\\Rsystems_Project\\Assignment\\Assignment-Api\\Assignment.Dto\\Assignment.Dto.csproj"
             }
           }
         }

@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\loken\\OneDrive\\Desktop\\assignment-main\\Assignment\\assignment-api\\Assignment.Dto\\Assignment.Dto.csproj",
+      "projectUniqueName": "D:\\Rsystems_Project\\Assignment\\Assignment-Api\\Assignment.Dto\\Assignment.Dto.csproj",
       "projectName": "Assignment.Dto",
-      "projectPath": "C:\\Users\\loken\\OneDrive\\Desktop\\assignment-main\\Assignment\\assignment-api\\Assignment.Dto\\Assignment.Dto.csproj",
+      "projectPath": "D:\\Rsystems_Project\\Assignment\\Assignment-Api\\Assignment.Dto\\Assignment.Dto.csproj",
       "packagesPath": "C:\\Users\\loken\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\loken\\OneDrive\\Desktop\\assignment-main\\Assignment\\assignment-api\\Assignment.Dto\\obj\\",
+      "outputPath": "D:\\Rsystems_Project\\Assignment\\Assignment-Api\\Assignment.Dto\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -60,7 +60,7 @@ public class StoryController : ControllerBase
         }
         catch (Exception ex)
         {
-            return Ok(new RequestOutcome<string> { IsSuccess = false, Message = ex.Message.ToString(), Data = null, StatusCode = 400 });
+            return BadRequest(ex.Message.ToString());
         }
     }
 
