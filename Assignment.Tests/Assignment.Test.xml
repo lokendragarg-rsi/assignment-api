@@ -4,11 +4,6 @@
         <name>Assignment.Test</name>
     </assembly>
     <members>
-        <member name="T:Assignment.Test.Common.ProgramTest">
-            <summary>
-            The ProgramTest
-            </summary>
-        </member>
         <member name="T:Assignment.Test.Story.Controller.StoryControllerTest">
             <summary>
             The story controller test
