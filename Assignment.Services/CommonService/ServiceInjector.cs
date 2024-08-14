@@ -1,4 +1,5 @@
-﻿using Assignment.Services.StoryServices;
+﻿using Assignment.Services.StoryAPIService;
+using Assignment.Services.StoryServices;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Assignment.Services.CommonService
@@ -9,6 +10,7 @@ namespace Assignment.Services.CommonService
         {
             services.AddTransient(typeof(HttpClient));
             services.AddScoped(typeof(IStoryService), typeof(StoryService));
+            services.AddScoped(typeof(IStoryApiService), typeof(StoryApiService));
         }
     }                                                           
 }

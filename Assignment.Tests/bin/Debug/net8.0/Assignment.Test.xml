@@ -4,67 +4,40 @@
         <name>Assignment.Test</name>
     </assembly>
     <members>
-        <member name="T:Assignment.Test.Story.Controller.StoryControllerFixture">
+        <member name="T:Assignment.Test.Story.Controller.StoryControllerTest">
             <summary>
-            The StoryControllerFixture
-            </summary>
-            <seealso cref="T:Rocket.Surgery.Extensions.Testing.Fixtures.ITestFixtureBuilder" />
-        </member>
-        <member name="F:Assignment.Test.Story.Controller.StoryControllerFixture._storyService">
-            <summary>
-            The story service
+            The story controller test
             </summary>
         </member>
-        <member name="M:Assignment.Test.Story.Controller.StoryControllerFixture.#ctor">
+        <member name="M:Assignment.Test.Story.Controller.StoryControllerTest.#ctor">
             <summary>
-            
+            The story controller test
             </summary>
         </member>
-        <member name="M:Assignment.Test.Story.Controller.StoryControllerFixture.WithStoryService(Assignment.Services.StoryServices.IStoryService)">
+        <member name="M:Assignment.Test.Story.Controller.StoryControllerTest.Should_Match_Items_If_Story_Details_Exist">
             <summary>
-            Withes the story service.
-            </summary>
-            <param name="storyService">The story Service.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Assignment.Test.Story.Controller.StoryControllerFixture.op_Implicit(Assignment.Test.Story.Controller.StoryControllerFixture)~Assignment.API.Controllers.StoryController">
-            <summary>
-            Performs an implicit conversion from <see cref="T:Assignment.Test.Story.Controller.StoryControllerFixture"/> to <see cref="T:Assignment.API.Controllers.StoryController"/>.
-            </summary>
-            <param name="fixture">The fixture.</param>
-            <returns>
-            The result of the conversion.
-            </returns>
-        </member>
-        <member name="M:Assignment.Test.Story.Controller.StoryControllerFixture.Build">
-            <summary>
-            Builds this instance.
+            Should return items if story details exist
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Assignment.Test.Story.Controller.StoryControllerTest.StoryItemTest.Should_Return_Items_If_Story_Details_Exist">
-            <summary>
-            Should Return Items If Story Details Exist
-            </summary>
-        </member>
-        <member name="M:Assignment.Test.Story.Controller.StoryControllerTest.StoryItemTest.Should_Return_Zero_Count_If_No_Story_Details_Exist">
+        <member name="M:Assignment.Test.Story.Controller.StoryControllerTest.Should_Return_Not_Found_If_No_Story_Details_Exist">
             <summary>
             Should return zero count if no story details exist
             </summary>
         </member>
-        <member name="M:Assignment.Test.Story.Controller.StoryControllerTest.StoryItemTest.Should_Return_Title_If_Request_Params_Provides(System.Int32,System.String)">
+        <member name="M:Assignment.Test.Story.Controller.StoryControllerTest.Should_Return_Error_If_Less_Than_Zero_Record_Pass_In_Request_Parameter_For_Story_Details">
             <summary>
-            Should return zero count if no story details exist
+            Should return error if less than zero record pass in request parameter for story details
             </summary>
         </member>
-        <member name="M:Assignment.Test.Story.Controller.StoryControllerTest.StoryItemTest.Should_Return_Url_If_Request_Params_Provides(System.Int32,System.String)">
+        <member name="M:Assignment.Test.Story.Controller.StoryControllerTest.Should_Throw_Exception_When_No_Record_Exist">
             <summary>
-            Should return zero count if no story details exist
+            Should throw exception when no record exist
             </summary>
         </member>
-        <member name="M:Assignment.Test.Story.Controller.StoryControllerTest.StoryItemTest.Should_Return_Error_If_Less_Than_Zero_Record_Pass_In_Story_Details">
+        <member name="T:Assignment.Test.Stories.Service.StoryServiceTest">
             <summary>
-            Should return error if less than zero record pass in story details
+            The story service test
             </summary>
         </member>
     </members>

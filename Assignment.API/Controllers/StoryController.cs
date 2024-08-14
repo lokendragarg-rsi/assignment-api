@@ -11,17 +11,14 @@ namespace Assignment.API.Controllers;
 public class StoryController : ControllerBase
 {
     private readonly IStoryService _storyService;
-    private readonly IMemoryCache _memoryCache;
 
     /// <summary>
     /// The Story controller
     /// </summary>
     /// <param name="storyService"></param>
-    /// <param name="memoryCache"></param>
-    public StoryController(IStoryService storyService, IMemoryCache memoryCache)
+    public StoryController(IStoryService storyService)
     {
         _storyService = storyService;
-        _memoryCache = memoryCache;
     }
 
 
@@ -36,27 +33,13 @@ public class StoryController : ControllerBase
     {
         try
         {
-            var cacheKey = "storydetails";
-            if (!_memoryCache.TryGetValue(cacheKey, out List<StoryDetailDto> storyDetails))
+            if (takeRecord <= 0)
             {
-                if (takeRecord == 0)
-                {
-                    return BadRequest("Records should be greater than zero");
-                }
-
-                storyDetails = await _storyService.GetStoryDetails(takeRecord);
-
-                //setting up cache options
-                var cacheExpiryOptions = new MemoryCacheEntryOptions
-                {
-                    AbsoluteExpiration = DateTime.Now.AddMinutes(5),
-                    Priority = CacheItemPriority.Normal,
-                    SlidingExpiration = TimeSpan.FromMinutes(5),
-                };
-                //setting cache entries
-                _memoryCache.Set(cacheKey, storyDetails, cacheExpiryOptions);
+                return BadRequest("Take records should be greater than zero");
             }
-            return Ok(new RequestOutcome<List<StoryDetailDto>> { IsSuccess = true, Message = "Success", Data = storyDetails, StatusCode = 200 });
+
+            List<StoryDetailDto> storyDetails = await _storyService.GetStoryDetails(takeRecord);
+            return storyDetails != null ? Ok(storyDetails) : NotFound();
         }
         catch (Exception ex)
         {

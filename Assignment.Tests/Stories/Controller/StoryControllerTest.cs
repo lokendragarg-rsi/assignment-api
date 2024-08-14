@@ -4,128 +4,117 @@ using Assignment.Services.StoryServices;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Assignment.Framework.Builder.Common;
+using Microsoft.Extensions.Logging;
+using Moq;
+using Microsoft.Extensions.Caching.Memory;
+using NSubstitute.ReturnsExtensions;
 
 namespace Assignment.Test.Story.Controller;
 
+/// <summary>
+/// The story controller test
+/// </summary>
 public class StoryControllerTest
 {
-    public class StoryItemTest
+    private readonly Mock<IStoryService> _storyServiceMock;
+    private readonly StoryController _storyController;
+
+    /// <summary>
+    /// The story controller test
+    /// </summary>
+    public StoryControllerTest()
     {
-        /// <summary>
-        /// Should Return Items If Story Details Exist
-        /// </summary>
-        [Fact]
-        public async Task Should_Return_Items_If_Story_Details_Exist()
-        {
-            //Given
-            var StoryService = Substitute.For<IStoryService>();
-            StoryService.GetStoryDetails(Arg.Any<int>()).Returns(Task.FromResult(new List<StoryDetailDto>()
+        _storyServiceMock = new Mock<IStoryService>();
+        _storyController = new StoryController(_storyServiceMock.Object);
+    }
+
+    /// <summary>
+    /// Should return items if story details exist
+    /// </summary>
+    /// <returns></returns>
+    [Fact]
+    public async Task Should_Match_Items_If_Story_Details_Exist()
+    {
+        var resultModel = new List<StoryDetailDto>()
                 {
                     new StoryDetailDto()
                     {
                         title = "Test",
                         url = "test"
                     }
-                }));
-            StoryController sut = new StoryControllerFixture().WithStoryService(StoryService);
-            //When
-            var okResult = await sut.GetStoryDetails(1);
-            var result = ((RequestOutcome<List<StoryDetailDto>>)(okResult as OkObjectResult).Value);
+                };
+        //Given
+        _storyServiceMock.Setup(s => s.GetStoryDetails(1)).ReturnsAsync(resultModel);
 
-            //Then
-            result?.Data.Should().HaveCount(1);
-            //Then
-        }
+        //When
+        var result = await _storyController.GetStoryDetails(1);
 
-        /// <summary>
-        /// Should return zero count if no story details exist
-        /// </summary>
-        [Fact]
-        public async Task Should_Return_Zero_Count_If_No_Story_Details_Exist()
-        {
-            //Given
-            var StoryService = Substitute.For<IStoryService>();
-            StoryService.GetStoryDetails(Arg.Any<int>()).Returns(new List<StoryDetailDto>());
-            StoryController sut = new StoryControllerFixture().WithStoryService(StoryService);
-            //When
-            var okResult = await sut.GetStoryDetails(1);
-            var result = ((RequestOutcome<List<StoryDetailDto>>)(okResult as OkObjectResult).Value);
+        // Assert
+        var okResult = Assert.IsType<OkObjectResult>(result);
+        okResult.Should().NotBeNull();
+        okResult.StatusCode.Should().Be(200);
 
-            //Then
-            result?.Data.Should().HaveCount(0);
-            //Then
-        }
+        //Then
+        okResult.Value.Should().BeEquivalentTo(resultModel);
+        //Then
+    }
 
-        /// <summary>
-        /// Should return zero count if no story details exist
-        /// </summary>
-        [Theory]
-        [InlineData(1, "test1")]
-        [InlineData(2, "test2")]
-        public async Task Should_Return_Title_If_Request_Params_Provides(int takeRecord, string title)
-        {
-            //Given
-            var StoryService = Substitute.For<IStoryService>();
-            StoryService.GetStoryDetails(Arg.Any<int>()).Returns(Task.FromResult(new List<StoryDetailDto>()
-                {
-                    new StoryDetailDto()
-                    {
-                        title = title
-                    }
-                }));
-            StoryController sut = new StoryControllerFixture().WithStoryService(StoryService);
-            //When
-            var okResult = await sut.GetStoryDetails(takeRecord);
-            var result = ((RequestOutcome<List<StoryDetailDto>>)(okResult as OkObjectResult).Value);
+    /// <summary>
+    /// Should return zero count if no story details exist
+    /// </summary>
+    [Fact]
+    public async Task Should_Return_Not_Found_If_No_Story_Details_Exist()
+    {
+        //Given
+        _storyServiceMock.Setup(s => s.GetStoryDetails(1)).Returns(Task.FromResult((List<StoryDetailDto>)null));
 
-            //Then
-            result?.Data?[0].title.Should().Be(title);
-            //Then
-        }
+        //When
+        var result = await _storyController.GetStoryDetails(1);
 
-        /// <summary>
-        /// Should return zero count if no story details exist
-        /// </summary>
-        [Theory]
-        [InlineData(1, "test1.com")]
-        [InlineData(2, "test2.com")]
-        public async Task Should_Return_Url_If_Request_Params_Provides(int takeRecord, string url)
-        {
-            //Given
-            var StoryService = Substitute.For<IStoryService>();
-            StoryService.GetStoryDetails(Arg.Any<int>()).Returns(Task.FromResult(new List<StoryDetailDto>()
-                {
-                    new StoryDetailDto()
-                    {
-                        url = url
-                    }
-                }));
-            StoryController sut = new StoryControllerFixture().WithStoryService(StoryService);
-            //When
-            var okResult = await sut.GetStoryDetails(takeRecord);
-            var result = ((RequestOutcome<List<StoryDetailDto>>)(okResult as OkObjectResult).Value);
+        // Assert
+        var notFoundResult = Assert.IsType<NotFoundResult>(result);
+        notFoundResult.Should().NotBeNull();
+        //Then
+        notFoundResult.StatusCode.Should().Be(404);
+        //Then
+    }
 
-            //Then
-            result?.Data?[0].url.Should().Be(url);
-            //Then
-        }
+    /// <summary>
+    /// Should return error if less than zero record pass in request parameter for story details
+    /// </summary>
+    [Fact]
+    public async Task Should_Return_Error_If_Less_Than_Zero_Record_Pass_In_Request_Parameter_For_Story_Details()
+    {
+        //Given
+        _storyServiceMock.Setup(s => s.GetStoryDetails(-1)).Returns(Task.FromResult((new List<StoryDetailDto>())));
 
-        /// <summary>
-        /// Should return error if less than zero record pass in story details
-        /// </summary>
-        [Fact]
-        public async Task Should_Return_Error_If_Less_Than_Zero_Record_Pass_In_Story_Details()
-        {
-            //Given
-            var StoryService = Substitute.For<IStoryService>();
-            StoryService.GetStoryDetails(Arg.Any<int>()).Returns(Task.FromResult(new List<StoryDetailDto>()));
-            StoryController sut = new StoryControllerFixture().WithStoryService(StoryService);
-            //When
-            var okResult = await sut.GetStoryDetails(0);
-            var result = (okResult as BadRequestObjectResult);
-            //Then
-            result?.StatusCode.Should().Be(400);
-            //Then
-        }
+        //When
+        var result = await _storyController.GetStoryDetails(-1);
+
+        // Assert
+        var badRequestResult = Assert.IsType<BadRequestObjectResult>(result);
+        //Then
+        badRequestResult.StatusCode.Should().Be(400);
+        //Then
+    }
+
+    /// <summary>
+    /// Should throw exception when no record exist
+    /// </summary>
+    [Fact]
+    public async Task Should_Throw_Exception_When_No_Record_Exist()
+    {
+        //Given
+        _storyServiceMock.Setup(s => s.GetStoryDetails(1)).Throws(new IOException());
+
+        //When
+        var result = await _storyController.GetStoryDetails(1);
+
+        // Assert
+        var badRequestResult = Assert.IsType<BadRequestObjectResult>(result);
+
+        //Then
+        badRequestResult.StatusCode.Should().Be(400);
+        //Then
     }
 }

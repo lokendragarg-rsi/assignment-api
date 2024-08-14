@@ -1,4 +1,6 @@
 ﻿using Assignment.Dto.Dto;
+using Assignment.Services.StoryAPIService;
+using Microsoft.Extensions.Caching.Memory;
 using System.IO;
 using System.Net.Http.Json;
 using System.Text.Json;
@@ -9,13 +11,19 @@ public class StoryService : IStoryService
 {
     private HttpClient _client;
 
+    private readonly IMemoryCache _memoryCache;
+
+    private readonly IStoryApiService _storyApiService;
+
     /// <summary>
     /// The Story controller
     /// </summary>
     /// <param name="client"></param>
-    public StoryService(HttpClient client)
+    public StoryService(HttpClient client, IMemoryCache memoryCache, IStoryApiService storyApiService)
     {
         _client = client;
+        _memoryCache = memoryCache;
+        _storyApiService = storyApiService;
     }
 
 
@@ -27,33 +35,20 @@ public class StoryService : IStoryService
     /// <returns></returns>
     public async Task<List<StoryDetailDto>> GetStoryDetails(int takeRecord)
     {
-        var storyDetails = new List<StoryDetailDto>();
-        string apiUrl = "https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty";
-
-        HttpResponseMessage response = await _client.GetAsync(apiUrl);
-
-        if (response.IsSuccessStatusCode)
+        var cacheKey = "storydetails";
+        if (!_memoryCache.TryGetValue(cacheKey, out List<StoryDetailDto> storyDetails))
         {
-            var storyDetailIds = await JsonSerializer.DeserializeAsync<List<int>>(await response.Content.ReadAsStreamAsync());
-            if (storyDetailIds != null)
+            storyDetails = await _storyApiService.GetStoryItemDetails(takeRecord);
+
+            //setting up cache options
+            var cacheExpiryOptions = new MemoryCacheEntryOptions
             {
-                var itemIds = storyDetailIds.Take(takeRecord).ToList();
-                StoryDetailDto storyDetailItem = new StoryDetailDto();
-                Parallel.ForEach(itemIds, new ParallelOptions() { MaxDegreeOfParallelism = 25 }, item =>
-                {
-                    _client = new HttpClient();
-                    string storyDetailAPIUrl = "https://hacker-news.firebaseio.com/v0/item/"+ item + ".json?print=pretty";
-                    HttpResponseMessage responseDetail = _client.GetAsync(storyDetailAPIUrl).Result;
-                    if (responseDetail.IsSuccessStatusCode)
-                    {
-                        storyDetailItem = JsonSerializer.DeserializeAsync<StoryDetailDto>(responseDetail.Content.ReadAsStreamAsync().Result).Result;
-                        if(storyDetailItem != null)
-                        {
-                            storyDetails.Add(storyDetailItem);
-                        }
-                    }
-                });
-            }
+                AbsoluteExpiration = DateTime.Now.AddMinutes(5),
+                Priority = CacheItemPriority.Normal,
+                SlidingExpiration = TimeSpan.FromMinutes(5),
+            };
+            //setting cache entries
+            _memoryCache.Set(cacheKey, storyDetails, cacheExpiryOptions);
         }
 
         return storyDetails;

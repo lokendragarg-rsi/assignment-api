@@ -563,7 +563,6 @@ D:\Rsystems_Project\Assignment\Assignment-Api\Assignment.Tests\bin\Debug\net8.0\
 D:\Rsystems_Project\Assignment\Assignment-Api\Assignment.Tests\bin\Debug\net8.0\appsettings.json
 D:\Rsystems_Project\Assignment\Assignment-Api\Assignment.Tests\bin\Debug\net8.0\Assignment.API.exe
 D:\Rsystems_Project\Assignment\Assignment-Api\Assignment.Tests\bin\Debug\net8.0\testhost.exe
-D:\Rsystems_Project\Assignment\Assignment-Api\Assignment.Tests\bin\Debug\net8.0\xunit.runner.visualstudio.dotnetcore.testadapter.dll
 D:\Rsystems_Project\Assignment\Assignment-Api\Assignment.Tests\bin\Debug\net8.0\xunit.runner.reporters.netcoreapp10.dll
 D:\Rsystems_Project\Assignment\Assignment-Api\Assignment.Tests\bin\Debug\net8.0\xunit.runner.utility.netcoreapp10.dll
 D:\Rsystems_Project\Assignment\Assignment-Api\Assignment.Tests\bin\Debug\net8.0\Assignment.Test.deps.json
@@ -586,7 +585,6 @@ D:\Rsystems_Project\Assignment\Assignment-Api\Assignment.Tests\bin\Debug\net8.0\
 D:\Rsystems_Project\Assignment\Assignment-Api\Assignment.Tests\bin\Debug\net8.0\Microsoft.VisualStudio.TestPlatform.Common.dll
 D:\Rsystems_Project\Assignment\Assignment-Api\Assignment.Tests\bin\Debug\net8.0\Newtonsoft.Json.dll
 D:\Rsystems_Project\Assignment\Assignment-Api\Assignment.Tests\bin\Debug\net8.0\NSubstitute.dll
-D:\Rsystems_Project\Assignment\Assignment-Api\Assignment.Tests\bin\Debug\net8.0\NuGet.Frameworks.dll
 D:\Rsystems_Project\Assignment\Assignment-Api\Assignment.Tests\bin\Debug\net8.0\Rocket.Surgery.Extensions.Testing.dll
 D:\Rsystems_Project\Assignment\Assignment-Api\Assignment.Tests\bin\Debug\net8.0\Rocket.Surgery.Extensions.Testing.Coverlet.dll
 D:\Rsystems_Project\Assignment\Assignment-Api\Assignment.Tests\bin\Debug\net8.0\Rocket.Surgery.Extensions.Testing.Fixtures.dll
@@ -695,3 +693,8 @@ D:\Rsystems_Project\Assignment\Assignment-Api\Assignment.Tests\obj\Debug\net8.0\
 D:\Rsystems_Project\Assignment\Assignment-Api\Assignment.Tests\obj\Debug\net8.0\Assignment.Test.genruntimeconfig.cache
 D:\Rsystems_Project\Assignment\Assignment-Api\Assignment.Tests\obj\Debug\net8.0\ref\Assignment.Test.dll
 D:\Rsystems_Project\Assignment\Assignment-Api\Assignment.Tests\bin\Debug\net8.0\Assignment.Test.xml
+D:\Rsystems_Project\Assignment\Assignment-Api\Assignment.Tests\bin\Debug\net8.0\.msCoverageSourceRootsMapping_Assignment.Test
+D:\Rsystems_Project\Assignment\Assignment-Api\Assignment.Tests\bin\Debug\net8.0\xunit.runner.visualstudio.testadapter.dll
+D:\Rsystems_Project\Assignment\Assignment-Api\Assignment.Tests\bin\Debug\net8.0\Moq.dll
+D:\Rsystems_Project\Assignment\Assignment-Api\Assignment.Tests\bin\Debug\net8.0\AutoFixture.dll
+D:\Rsystems_Project\Assignment\Assignment-Api\Assignment.Tests\bin\Debug\net8.0\Fare.dll

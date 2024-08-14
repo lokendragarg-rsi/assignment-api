@@ -1,11 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "XVrl/Jj/l8MBrxhkyJuaqMzi2CyMJoccJq2BruR683NdWbcSFSn6tGXHCx9ZRs2Tapo0fwiCrtIeq9AL+wdBkw==",
+  "dgSpecHash": "pNVt26WvYlV99laveFTEt08qywGVREC3TquKDOPwI+0XerflhJGu1ruerBRVVYuD/t/8DHlE+0AoLSuEknbxGA==",
   "success": true,
   "projectFilePath": "D:\\Rsystems_Project\\Assignment\\Assignment-Api\\Assignment.Services\\Assignment.Services.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\loken\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\8.0.0\\microsoft.extensions.caching.abstractions.8.0.0.nupkg.sha512",
+    "C:\\Users\\loken\\.nuget\\packages\\microsoft.extensions.caching.memory\\8.0.0\\microsoft.extensions.caching.memory.8.0.0.nupkg.sha512",
     "C:\\Users\\loken\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\8.0.0\\microsoft.extensions.dependencyinjection.8.0.0.nupkg.sha512",
-    "C:\\Users\\loken\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512"
+    "C:\\Users\\loken\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
+    "C:\\Users\\loken\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\8.0.0\\microsoft.extensions.logging.abstractions.8.0.0.nupkg.sha512",
+    "C:\\Users\\loken\\.nuget\\packages\\microsoft.extensions.options\\8.0.0\\microsoft.extensions.options.8.0.0.nupkg.sha512",
+    "C:\\Users\\loken\\.nuget\\packages\\microsoft.extensions.primitives\\8.0.0\\microsoft.extensions.primitives.8.0.0.nupkg.sha512"
   ],
   "logs": []
 }
