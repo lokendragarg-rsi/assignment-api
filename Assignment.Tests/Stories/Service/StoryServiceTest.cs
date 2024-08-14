@@ -12,6 +12,9 @@ using NSubstitute;
 using Castle.Core.Configuration;
 using Assignment.Services.StoryAPIService;
 using NSubstitute.Extensions;
+using Newtonsoft.Json.Linq;
+using Microsoft.AspNetCore.DataProtection.KeyManagement;
+using Assignment.Services.MemoryCacheServices;
 
 namespace Assignment.Test.Stories.Service
 {
@@ -20,46 +23,119 @@ namespace Assignment.Test.Stories.Service
     /// </summary>
     public class StoryServiceTest
     {
-        private readonly Mock<IConfiguration> _mockConfiguration;
-        private readonly Mock<IMemoryCache> _mockMemoryCache;
+        private readonly Mock<IMemoryCacheService> _mockMemoryCache;
         private readonly Mock<HttpClient> _mockClient;
         private readonly Mock<IStoryApiService> _mockStoryApiService;
         private readonly StoryService _storyService;
         private readonly IFixture _fixture;
+        private readonly Mock<ICacheEntry> _mockCacheEntry;
 
+
+        /// <summary>
+        /// The story service test
+        /// </summary>
         public StoryServiceTest()
         {
             _mockStoryApiService = new Mock<IStoryApiService>();
             _fixture = new Fixture();
-            _mockMemoryCache = new Mock<IMemoryCache>();
+            _mockMemoryCache = new Mock<IMemoryCacheService>();
             _mockClient = new Mock<HttpClient>();
-            _storyService = new StoryService(_mockClient.Object, _mockMemoryCache.Object, _mockStoryApiService.Object);
+            _mockCacheEntry = new Mock<ICacheEntry>();
+            _storyService = new StoryService(_mockClient.Object, _mockStoryApiService.Object, _mockMemoryCache.Object);
         }
 
+        /// <summary>
+        /// Should match records if story items found
+        /// </summary>
+        /// <returns></returns>
         [Fact]
-        public async Task Should_Match_Items_If_Story_Details_Exist()
+        public async Task Should_Match_Records_If_Story_Items_Found()
         {
-            var resultModel = new List<StoryDetailDto>()
-                {
-                    new StoryDetailDto()
-                    {
-                        title = "Test",
-                        url = "test"
-                    }
-                };
-            //Given
-            _mockStoryApiService.Setup(s => s.GetStoryItemDetails(1)).ReturnsAsync(resultModel);
-
-            var key = "storydetails";
-            _mockMemoryCache.Setup(cache => cache.TryGetValue(key, out It.Ref<object>.IsAny)).Returns(true);
+            //object
+            var resultModel = new List<StoryDetailDto>() { new StoryDetailDto() { title = "test", url = "https://test.com" } };
 
             //When
+            var cacheKey = "storydetails";
+            //setting up cache options
+            var cacheExpiryOptions = new MemoryCacheEntryOptions
+            {
+                AbsoluteExpiration = DateTime.Now.AddMinutes(5),
+                Priority = CacheItemPriority.Normal,
+                SlidingExpiration = TimeSpan.FromMinutes(5),
+            };;
+            _mockMemoryCache.Setup(mc => mc.Set(cacheKey, resultModel, cacheExpiryOptions));
+
+            _mockStoryApiService.Setup(s => s.GetStoryItemDetails(1)).ReturnsAsync(resultModel);
+            // Assert
+            var result = await _storyService.GetStoryDetails(1);
+
+            // Then
+            Assert.NotNull(result);
+            Assert.Equal(resultModel, result);
+            // Then
+        }
+
+        /// <summary>
+        /// Should return null when item does not exist on story details
+        /// </summary>
+        /// <returns></returns>
+        [Fact]
+        public async Task Should_Return_Null_When_Item_Does_Not_Exist_On_Story_Details()
+        {
+            //object
+            var resultModel = new List<StoryDetailDto>() { new StoryDetailDto() { title = "test", url = "https://test.com" } };
+
+            //When
+            var cacheKey = "storydetails";
+            //setting up cache options
+            var cacheExpiryOptions = new MemoryCacheEntryOptions
+            {
+                AbsoluteExpiration = DateTime.Now.AddMinutes(5),
+                Priority = CacheItemPriority.Normal,
+                SlidingExpiration = TimeSpan.FromMinutes(5),
+            };
+            _mockMemoryCache.Setup(mc => mc.Set(cacheKey, resultModel, cacheExpiryOptions));
+
+            _mockStoryApiService.Setup(s => s.GetStoryItemDetails(1)).Returns(Task.FromResult((List<StoryDetailDto>)null));
+            // Assert
+            var result = await _storyService.GetStoryDetails(1);
+
+            // Then
+            Assert.Null(result);
+            // Then
+        }
+
+        /// <summary>
+        /// Should return data from cache on story details
+        /// </summary>
+        /// <returns></returns>
+        [Fact]
+        public async Task Should_Return_Data_From_Cache_On_Story_Details()
+        {
+            //object
+            var resultModel = new List<StoryDetailDto>() { new StoryDetailDto() { title = "test", url = "https://test.com" }, new StoryDetailDto() { title = "test1", url = "https://test1.com" } };
+
+            var key = _fixture.Create<string>();
+            var objectToCache = _fixture.Create<List<StoryDetailDto>>();
+
+            _mockStoryApiService.Setup(api => api.GetStoryItemDetails(0)).ReturnsAsync(resultModel);
+
+            var cacheKey = "storydetails";
+            //setting up cache options
+            var cacheExpiryOptions = new MemoryCacheEntryOptions
+            {
+                AbsoluteExpiration = DateTime.Now.AddMinutes(5),
+                Priority = CacheItemPriority.Normal,
+                SlidingExpiration = TimeSpan.FromMinutes(5),
+            };
+            _mockMemoryCache.Setup(cache => cache.TryGetValue(cacheKey,out resultModel)).Returns(true);
+
+            // Act
             var result = await _storyService.GetStoryDetails(1);
 
             // Assert
             Assert.NotNull(result);
-            //Assert.Equal(3, result.TotalNoOfItems);
-            //Assert.Equal(2, result.Items.Count()); // Because PageSize is 2 and Page is 1, so only first 2 items
+            Assert.Equal(2, result.Count());
         }
     }
 }

@@ -35,10 +35,55 @@
             Should throw exception when no record exist
             </summary>
         </member>
+        <member name="T:Assignment.Test.Stories.Service.MemoryCacheServiceTest">
+            <summary>
+            The memory cache service test
+            </summary>
+        </member>
+        <member name="M:Assignment.Test.Stories.Service.MemoryCacheServiceTest.#ctor">
+            <summary>
+            The memory cache service test
+            </summary>
+        </member>
+        <member name="M:Assignment.Test.Stories.Service.MemoryCacheServiceTest.Should_Throw_Exception_On_Save_Value_In_Cache_For_Story_Details">
+            <summary>
+            Should throw exception on retrieve value from cache in story details
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Assignment.Test.Stories.Service.MemoryCacheServiceTest.Should_Throw_Exception_On_Retrieve_Value_From_Cache">
+            <summary>
+            Should throw exception on retrieve value from cache
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Assignment.Test.Stories.Service.StoryServiceTest">
             <summary>
             The story service test
             </summary>
+        </member>
+        <member name="M:Assignment.Test.Stories.Service.StoryServiceTest.#ctor">
+            <summary>
+            The story service test
+            </summary>
+        </member>
+        <member name="M:Assignment.Test.Stories.Service.StoryServiceTest.Should_Match_Records_If_Story_Items_Found">
+            <summary>
+            Should match records if story items found
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Assignment.Test.Stories.Service.StoryServiceTest.Should_Return_Null_When_Item_Does_Not_Exist_On_Story_Details">
+            <summary>
+            Should return null when item does not exist on story details
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Assignment.Test.Stories.Service.StoryServiceTest.Should_Return_Data_From_Cache_On_Story_Details">
+            <summary>
+            Should return data from cache on story details
+            </summary>
+            <returns></returns>
         </member>
     </members>
 </doc>

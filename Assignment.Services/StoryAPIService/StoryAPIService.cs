@@ -1,4 +1,5 @@
 ﻿using Assignment.Dto.Dto;
+using Microsoft.Extensions.Configuration;
 using System.Text.Json;
 
 namespace Assignment.Services.StoryAPIService;
@@ -18,35 +19,36 @@ public class StoryApiService : IStoryApiService
 
     public async Task<List<StoryDetailDto>> GetStoryItemDetails(int takeRecord)
     {
-        string apiUrl = "https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty";
-
         List<StoryDetailDto> storyDetails = new List<StoryDetailDto>();
-        HttpResponseMessage response = await _client.GetAsync(apiUrl);
-
-        if (response.IsSuccessStatusCode)
+        if (takeRecord > 0)
         {
-            var storyDetailIds = await JsonSerializer.DeserializeAsync<List<int>>(await response.Content.ReadAsStreamAsync());
-            if (storyDetailIds != null)
+            string apiUrl = "https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty";
+            HttpResponseMessage response = await _client.GetAsync(apiUrl);
+
+            if (response.IsSuccessStatusCode)
             {
-                var itemIds = storyDetailIds.Take(takeRecord).ToList();
-                StoryDetailDto storyDetailItem = new StoryDetailDto();
-                Parallel.ForEach(itemIds, new ParallelOptions() { MaxDegreeOfParallelism = 25 }, item =>
+                var storyDetailIds = await JsonSerializer.DeserializeAsync<List<int>>(await response.Content.ReadAsStreamAsync());
+                if (storyDetailIds != null)
                 {
-                    _client = new HttpClient();
-                    string storyDetailAPIUrl = "https://hacker-news.firebaseio.com/v0/item/" + item + ".json?print=pretty";
-                    HttpResponseMessage responseDetail = _client.GetAsync(storyDetailAPIUrl).Result;
-                    if (responseDetail.IsSuccessStatusCode)
+                    var itemIds = storyDetailIds.Take(takeRecord).ToList();
+                    StoryDetailDto storyDetailItem = new StoryDetailDto();
+                    Parallel.ForEach(itemIds, new ParallelOptions() { MaxDegreeOfParallelism = 25 }, item =>
                     {
-                        storyDetailItem = JsonSerializer.DeserializeAsync<StoryDetailDto>(responseDetail.Content.ReadAsStreamAsync().Result).Result;
-                        if (storyDetailItem != null && !string.IsNullOrEmpty(storyDetailItem.url) && !string.IsNullOrEmpty(storyDetailItem.title))
+                        _client = new HttpClient();
+                        string storyDetailAPIUrl = "https://hacker-news.firebaseio.com/v0/item/" + item + ".json?print=pretty";
+                        HttpResponseMessage responseDetail = _client.GetAsync(storyDetailAPIUrl).Result;
+                        if (responseDetail.IsSuccessStatusCode)
                         {
-                            storyDetails.Add(storyDetailItem);
+                            storyDetailItem = JsonSerializer.DeserializeAsync<StoryDetailDto>(responseDetail.Content.ReadAsStreamAsync().Result).Result;
+                            if (storyDetailItem != null && !string.IsNullOrEmpty(storyDetailItem.url) && !string.IsNullOrEmpty(storyDetailItem.title))
+                            {
+                                storyDetails.Add(storyDetailItem);
+                            }
                         }
-                    }
-                });
+                    });
+                }
             }
         }
-
         return storyDetails;
     }
 }

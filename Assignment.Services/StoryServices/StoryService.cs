@@ -1,4 +1,5 @@
 ﻿using Assignment.Dto.Dto;
+using Assignment.Services.MemoryCacheServices;
 using Assignment.Services.StoryAPIService;
 using Microsoft.Extensions.Caching.Memory;
 using System.IO;
@@ -11,19 +12,19 @@ public class StoryService : IStoryService
 {
     private HttpClient _client;
 
-    private readonly IMemoryCache _memoryCache;
-
     private readonly IStoryApiService _storyApiService;
+
+    private readonly IMemoryCacheService _memoryCacheService;
 
     /// <summary>
     /// The Story controller
     /// </summary>
     /// <param name="client"></param>
-    public StoryService(HttpClient client, IMemoryCache memoryCache, IStoryApiService storyApiService)
+    public StoryService(HttpClient client, IStoryApiService storyApiService, IMemoryCacheService memoryCacheService)
     {
         _client = client;
-        _memoryCache = memoryCache;
         _storyApiService = storyApiService;
+        _memoryCacheService = memoryCacheService;
     }
 
 
@@ -36,7 +37,7 @@ public class StoryService : IStoryService
     public async Task<List<StoryDetailDto>> GetStoryDetails(int takeRecord)
     {
         var cacheKey = "storydetails";
-        if (!_memoryCache.TryGetValue(cacheKey, out List<StoryDetailDto> storyDetails))
+        if (!_memoryCacheService.TryGetValue(cacheKey, out List<StoryDetailDto> storyDetails))
         {
             storyDetails = await _storyApiService.GetStoryItemDetails(takeRecord);
 
@@ -48,7 +49,7 @@ public class StoryService : IStoryService
                 SlidingExpiration = TimeSpan.FromMinutes(5),
             };
             //setting cache entries
-            _memoryCache.Set(cacheKey, storyDetails, cacheExpiryOptions);
+            _memoryCacheService.Set(cacheKey, storyDetails, cacheExpiryOptions);
         }
 
         return storyDetails;

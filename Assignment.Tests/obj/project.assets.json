@@ -2488,6 +2488,7 @@
         "dependencies": {
           "Assignment.Dto": "1.0.0",
           "Microsoft.Extensions.Caching.Memory": "8.0.0",
+          "Microsoft.Extensions.Configuration": "8.0.0",
           "Microsoft.Extensions.DependencyInjection": "8.0.0"
         },
         "compile": {
@@ -7758,6 +7759,7 @@
       "Assignment.Services >= 1.0.0",
       "AutoFixture >= 4.18.1",
       "FluentAssertions >= 6.12.0",
+      "Microsoft.Extensions.Configuration >= 8.0.0",
       "Microsoft.NET.Test.Sdk >= 17.10.0",
       "Moq >= 4.20.70",
       "NSubstitute >= 5.1.0",
@@ -7832,6 +7834,10 @@
           "FluentAssertions": {
             "target": "Package",
             "version": "[6.12.0, )"
+          },
+          "Microsoft.Extensions.Configuration": {
+            "target": "Package",
+            "version": "[8.0.0, )"
           },
           "Microsoft.NET.Test.Sdk": {
             "target": "Package",
