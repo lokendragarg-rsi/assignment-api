@@ -3,11 +3,9 @@ using Assignment.API.Controllers;
 using Assignment.Services.StoryServices;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Assignment.Framework.Builder.Common;
 using Microsoft.Extensions.Logging;
 using Moq;
 using Microsoft.Extensions.Caching.Memory;
-using NSubstitute.ReturnsExtensions;
 
 namespace Assignment.Test.Story.Controller;
 

@@ -62,7 +62,7 @@ namespace Assignment.Test.Stories.Service
         /// </summary>
         /// <returns></returns>
         [Fact]
-        public async Task Should_Throw_Exception_On_Retrieve_Value_From_Cache()
+        public void Should_Throw_Exception_On_Retrieve_Value_From_Cache()
         {
             // Arrange
             var key = "storydetails";
@@ -74,6 +74,91 @@ namespace Assignment.Test.Stories.Service
 
             // Assert
             Assert.Equal(result, false);
+        }
+
+        /// <summary>
+        /// Should save value in cache for story details
+        /// </summary>
+        /// <returns></returns>
+        [Fact]
+        public void Should_Save_Value_In_Cache_For_Story_Details()
+        {
+            // Arrange
+            var key = "storydetails";
+            string? keyPayload = null;
+            var resultModel = new List<StoryDetailDto>();
+            _mockMemoryCache.Setup(mc => mc.CreateEntry(It.IsAny<object>())).Callback((object k) => keyPayload = (string)k).Returns(_mockCacheEntry.Object);
+
+            //setting up cache options
+            var cacheExpiryOptions = new MemoryCacheEntryOptions
+            {
+                AbsoluteExpiration = DateTime.Now.AddMinutes(5),
+                Priority = CacheItemPriority.Normal,
+                SlidingExpiration = TimeSpan.FromMinutes(5),
+            };
+
+            // Act
+            var result = _memoryCacheService.Set(key, resultModel, cacheExpiryOptions);
+
+            // Assert
+            Assert.Equal(MemoryCacheStatusOption.Cached, result.CacheStatus);
+            Assert.Null(result.Error);
+        }
+
+        /// <summary>
+        /// Should retrieve value when return false in cache for story details
+        /// </summary>
+        /// <returns></returns>
+        [Fact]
+        public void Should_Retrieve_Value_When_Return_False_In_Cache_For_Story_Details()
+        {
+            // Arrange
+            var key = "storydetails";
+            var resultModel = new List<StoryDetailDto>();
+            _mockMemoryCache.Setup(cache => cache.TryGetValue(key, out It.Ref<object>.IsAny)).Returns(false);
+
+            //setting up cache options
+            var cacheExpiryOptions = new MemoryCacheEntryOptions
+            {
+                AbsoluteExpiration = DateTime.Now.AddMinutes(5),
+                Priority = CacheItemPriority.Normal,
+                SlidingExpiration = TimeSpan.FromMinutes(5),
+            };
+
+            // Act
+            var result = _memoryCacheService.TryGetValue(key, out It.Ref<object>.IsAny);
+
+            // Assert
+            //Assert.Equal(MemoryCacheStatusOption.Cached, result.CacheStatus);
+            Assert.Equal(result, false);
+        }
+
+        /// <summary>
+        /// Should retrieve value when return true in cache for story details
+        /// </summary>
+        /// <returns></returns>
+        [Fact]
+        public void Should_Retrieve_Value_When_Return_True_In_Cache_For_Story_Details()
+        {
+            // Arrange
+            var key = "storydetails";
+            var resultModel = new List<StoryDetailDto>();
+            _mockMemoryCache.Setup(cache => cache.TryGetValue(key, out It.Ref<object>.IsAny)).Returns(true);
+
+            //setting up cache options
+            var cacheExpiryOptions = new MemoryCacheEntryOptions
+            {
+                AbsoluteExpiration = DateTime.Now.AddMinutes(5),
+                Priority = CacheItemPriority.Normal,
+                SlidingExpiration = TimeSpan.FromMinutes(5),
+            };
+
+            // Act
+            var result = _memoryCacheService.TryGetValue(key, out It.Ref<object>.IsAny);
+
+            // Assert
+            //Assert.Equal(MemoryCacheStatusOption.Cached, result.CacheStatus);
+            Assert.Equal(result, true);
         }
     }
 }

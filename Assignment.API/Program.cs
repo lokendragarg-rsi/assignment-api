@@ -1,4 +1,6 @@
-using Assignment.Services.CommonService;
+using Assignment.Services.MemoryCacheServices;
+using Assignment.Services.StoryAPIService;
+using Assignment.Services.StoryServices;
 using Microsoft.Extensions.Caching.Memory;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,7 +13,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton(typeof(IMemoryCache), typeof(MemoryCache));
-new ServiceInjector(builder.Services);
+builder.Services.AddTransient(typeof(HttpClient));
+builder.Services.AddScoped(typeof(IStoryService), typeof(StoryService));
+builder.Services.AddScoped(typeof(IStoryApiService), typeof(StoryApiService));
+builder.Services.AddScoped(typeof(IMemoryCacheService), typeof(MemoryCacheService));
 
 builder.Services.AddCors(o => o.AddPolicy("CorePolicy", builder =>
 {

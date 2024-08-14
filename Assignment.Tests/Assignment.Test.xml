@@ -4,6 +4,11 @@
         <name>Assignment.Test</name>
     </assembly>
     <members>
+        <member name="T:Assignment.Test.Common.ProgramTest">
+            <summary>
+            The ProgramTest
+            </summary>
+        </member>
         <member name="T:Assignment.Test.Story.Controller.StoryControllerTest">
             <summary>
             The story controller test
@@ -54,6 +59,46 @@
         <member name="M:Assignment.Test.Stories.Service.MemoryCacheServiceTest.Should_Throw_Exception_On_Retrieve_Value_From_Cache">
             <summary>
             Should throw exception on retrieve value from cache
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Assignment.Test.Stories.Service.MemoryCacheServiceTest.Should_Save_Value_In_Cache_For_Story_Details">
+            <summary>
+            Should save value in cache for story details
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Assignment.Test.Stories.Service.MemoryCacheServiceTest.Should_Retrieve_Value_When_Return_False_In_Cache_For_Story_Details">
+            <summary>
+            Should retrieve value when return false in cache for story details
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Assignment.Test.Stories.Service.MemoryCacheServiceTest.Should_Retrieve_Value_When_Return_True_In_Cache_For_Story_Details">
+            <summary>
+            Should retrieve value when return true in cache for story details
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Assignment.Test.Stories.Service.StoryApiServiceTests">
+            <summary>
+            The story api service tests
+            </summary>
+        </member>
+        <member name="M:Assignment.Test.Stories.Service.StoryApiServiceTests.#ctor">
+            <summary>
+            The story api service test
+            </summary>
+        </member>
+        <member name="M:Assignment.Test.Stories.Service.StoryApiServiceTests.Should_Return_Zero_Count_When_No_Story_Details_Found">
+            <summary>
+            Should return zero count when no story details found
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Assignment.Test.Stories.Service.StoryApiServiceTests.Should_Return_Data_When_Story_Details_Found">
+            <summary>
+            Should return data when story details found
             </summary>
             <returns></returns>
         </member>

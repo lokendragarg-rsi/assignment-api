@@ -110,6 +110,25 @@
           }
         }
       },
+      "Microsoft.AspNetCore.TestHost/8.0.8": {
+        "type": "package",
+        "dependencies": {
+          "System.IO.Pipelines": "8.0.0"
+        },
+        "compile": {
+          "lib/net8.0/Microsoft.AspNetCore.TestHost.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.AspNetCore.TestHost.dll": {
+            "related": ".xml"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "Microsoft.Bcl.AsyncInterfaces/6.0.0": {
         "type": "package",
         "compile": {
@@ -724,22 +743,6 @@
         },
         "runtime": {
           "lib/netstandard2.0/Newtonsoft.Json.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "NSubstitute/5.1.0": {
-        "type": "package",
-        "dependencies": {
-          "Castle.Core": "5.1.1"
-        },
-        "compile": {
-          "lib/net6.0/NSubstitute.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net6.0/NSubstitute.dll": {
             "related": ".xml"
           }
         }
@@ -1549,6 +1552,22 @@
         },
         "runtime": {
           "lib/netstandard1.3/System.IO.FileSystem.Primitives.dll": {}
+        }
+      },
+      "System.IO.Pipelines/8.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/System.IO.Pipelines.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/System.IO.Pipelines.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
         }
       },
       "System.Linq/4.3.0": {
@@ -2445,7 +2464,6 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
-          "Assignment.Framework": "1.0.0",
           "Assignment.Services": "1.0.0",
           "Swashbuckle.AspNetCore": "6.4.0"
         },
@@ -2467,19 +2485,6 @@
         },
         "runtime": {
           "bin/placeholder/Assignment.Dto.dll": {}
-        }
-      },
-      "Assignment.Framework/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v8.0",
-        "dependencies": {
-          "Assignment.Dto": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/Assignment.Framework.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Assignment.Framework.dll": {}
         }
       },
       "Assignment.Services/1.0.0": {
@@ -2744,6 +2749,21 @@
         "lib/netstandard2.1/FluentAssertions.dll",
         "lib/netstandard2.1/FluentAssertions.pdb",
         "lib/netstandard2.1/FluentAssertions.xml"
+      ]
+    },
+    "Microsoft.AspNetCore.TestHost/8.0.8": {
+      "sha512": "mQSMZMA72IK/N79HgLn7tCCkN+stEq6yhq0vr6xfw2wvcfjAV2R6JFUYGUDHmWVUxTjDWjQX+Yrd5S9vQKnPLA==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.testhost/8.0.8",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net8.0/Microsoft.AspNetCore.TestHost.dll",
+        "lib/net8.0/Microsoft.AspNetCore.TestHost.xml",
+        "microsoft.aspnetcore.testhost.8.0.8.nupkg.sha512",
+        "microsoft.aspnetcore.testhost.nuspec"
       ]
     },
     "Microsoft.Bcl.AsyncInterfaces/6.0.0": {
@@ -3764,24 +3784,6 @@
         "newtonsoft.json.13.0.1.nupkg.sha512",
         "newtonsoft.json.nuspec",
         "packageIcon.png"
-      ]
-    },
-    "NSubstitute/5.1.0": {
-      "sha512": "ZCqOP3Kpp2ea7QcLyjMU4wzE+0wmrMN35PQMsdPOHYc2IrvjmusG9hICOiqiOTPKN0gJon6wyCn6ZuGHdNs9hQ==",
-      "type": "package",
-      "path": "nsubstitute/5.1.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "icon.png",
-        "lib/net462/NSubstitute.dll",
-        "lib/net462/NSubstitute.xml",
-        "lib/net6.0/NSubstitute.dll",
-        "lib/net6.0/NSubstitute.xml",
-        "lib/netstandard2.0/NSubstitute.dll",
-        "lib/netstandard2.0/NSubstitute.xml",
-        "nsubstitute.5.1.0.nupkg.sha512",
-        "nsubstitute.nuspec"
       ]
     },
     "Rocket.Surgery.Extensions.Testing/8.0.18": {
@@ -5438,6 +5440,35 @@
         "ref/xamarinwatchos10/_._",
         "system.io.filesystem.primitives.4.3.0.nupkg.sha512",
         "system.io.filesystem.primitives.nuspec"
+      ]
+    },
+    "System.IO.Pipelines/8.0.0": {
+      "sha512": "FHNOatmUq0sqJOkTx+UF/9YK1f180cnW5FVqnQMvYUN0elp6wFzbtPSiqbo1/ru8ICp43JM1i7kKkk6GsNGHlA==",
+      "type": "package",
+      "path": "system.io.pipelines/8.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/net461/System.IO.Pipelines.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net6.0/_._",
+        "buildTransitive/netcoreapp2.0/System.IO.Pipelines.targets",
+        "lib/net462/System.IO.Pipelines.dll",
+        "lib/net462/System.IO.Pipelines.xml",
+        "lib/net6.0/System.IO.Pipelines.dll",
+        "lib/net6.0/System.IO.Pipelines.xml",
+        "lib/net7.0/System.IO.Pipelines.dll",
+        "lib/net7.0/System.IO.Pipelines.xml",
+        "lib/net8.0/System.IO.Pipelines.dll",
+        "lib/net8.0/System.IO.Pipelines.xml",
+        "lib/netstandard2.0/System.IO.Pipelines.dll",
+        "lib/netstandard2.0/System.IO.Pipelines.xml",
+        "system.io.pipelines.8.0.0.nupkg.sha512",
+        "system.io.pipelines.nuspec",
+        "useSharedDesignerContext.txt"
       ]
     },
     "System.Linq/4.3.0": {
@@ -7741,11 +7772,6 @@
       "path": "../Assignment.Dto/Assignment.Dto.csproj",
       "msbuildProject": "../Assignment.Dto/Assignment.Dto.csproj"
     },
-    "Assignment.Framework/1.0.0": {
-      "type": "project",
-      "path": "../Assignment.Framework/Assignment.Framework.csproj",
-      "msbuildProject": "../Assignment.Framework/Assignment.Framework.csproj"
-    },
     "Assignment.Services/1.0.0": {
       "type": "project",
       "path": "../Assignment.Services/Assignment.Services.csproj",
@@ -7755,14 +7781,13 @@
   "projectFileDependencyGroups": {
     "net8.0": [
       "Assignment.API >= 1.0.0",
-      "Assignment.Framework >= 1.0.0",
       "Assignment.Services >= 1.0.0",
       "AutoFixture >= 4.18.1",
       "FluentAssertions >= 6.12.0",
+      "Microsoft.AspNetCore.TestHost >= 8.0.8",
       "Microsoft.Extensions.Configuration >= 8.0.0",
       "Microsoft.NET.Test.Sdk >= 17.10.0",
       "Moq >= 4.20.70",
-      "NSubstitute >= 5.1.0",
       "Rocket.Surgery.Extensions.Testing >= 8.0.18",
       "Rocket.Surgery.Extensions.Testing.Fixtures >= 8.0.18",
       "System.Net.Http >= 4.3.4",
@@ -7808,9 +7833,6 @@
             "D:\\Rsystems_Project\\Assignment\\Assignment-Api\\Assignment.API\\Assignment.API.csproj": {
               "projectPath": "D:\\Rsystems_Project\\Assignment\\Assignment-Api\\Assignment.API\\Assignment.API.csproj"
             },
-            "D:\\Rsystems_Project\\Assignment\\Assignment-Api\\Assignment.Framework\\Assignment.Framework.csproj": {
-              "projectPath": "D:\\Rsystems_Project\\Assignment\\Assignment-Api\\Assignment.Framework\\Assignment.Framework.csproj"
-            },
             "D:\\Rsystems_Project\\Assignment\\Assignment-Api\\Assignment.Services\\Assignment.Services.csproj": {
               "projectPath": "D:\\Rsystems_Project\\Assignment\\Assignment-Api\\Assignment.Services\\Assignment.Services.csproj"
             }
@@ -7835,6 +7857,10 @@
             "target": "Package",
             "version": "[6.12.0, )"
           },
+          "Microsoft.AspNetCore.TestHost": {
+            "target": "Package",
+            "version": "[8.0.8, )"
+          },
           "Microsoft.Extensions.Configuration": {
             "target": "Package",
             "version": "[8.0.0, )"
@@ -7846,10 +7872,6 @@
           "Moq": {
             "target": "Package",
             "version": "[4.20.70, )"
-          },
-          "NSubstitute": {
-            "target": "Package",
-            "version": "[5.1.0, )"
           },
           "Rocket.Surgery.Extensions.Testing": {
             "target": "Package",

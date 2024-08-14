@@ -1,19 +1,9 @@
 ﻿using Assignment.Dto.Dto;
-using Assignment.API.Controllers;
 using Assignment.Services.StoryServices;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Assignment.Framework.Builder.Common;
-using Microsoft.Extensions.Logging;
 using Moq;
 using AutoFixture;
 using Microsoft.Extensions.Caching.Memory;
-using NSubstitute;
-using Castle.Core.Configuration;
 using Assignment.Services.StoryAPIService;
-using NSubstitute.Extensions;
-using Newtonsoft.Json.Linq;
-using Microsoft.AspNetCore.DataProtection.KeyManagement;
 using Assignment.Services.MemoryCacheServices;
 
 namespace Assignment.Test.Stories.Service

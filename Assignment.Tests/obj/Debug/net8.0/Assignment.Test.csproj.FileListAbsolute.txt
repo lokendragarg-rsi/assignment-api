@@ -584,7 +584,6 @@ D:\Rsystems_Project\Assignment\Assignment-Api\Assignment.Tests\bin\Debug\net8.0\
 D:\Rsystems_Project\Assignment\Assignment-Api\Assignment.Tests\bin\Debug\net8.0\Microsoft.TestPlatform.Utilities.dll
 D:\Rsystems_Project\Assignment\Assignment-Api\Assignment.Tests\bin\Debug\net8.0\Microsoft.VisualStudio.TestPlatform.Common.dll
 D:\Rsystems_Project\Assignment\Assignment-Api\Assignment.Tests\bin\Debug\net8.0\Newtonsoft.Json.dll
-D:\Rsystems_Project\Assignment\Assignment-Api\Assignment.Tests\bin\Debug\net8.0\NSubstitute.dll
 D:\Rsystems_Project\Assignment\Assignment-Api\Assignment.Tests\bin\Debug\net8.0\Rocket.Surgery.Extensions.Testing.dll
 D:\Rsystems_Project\Assignment\Assignment-Api\Assignment.Tests\bin\Debug\net8.0\Rocket.Surgery.Extensions.Testing.Coverlet.dll
 D:\Rsystems_Project\Assignment\Assignment-Api\Assignment.Tests\bin\Debug\net8.0\Rocket.Surgery.Extensions.Testing.Fixtures.dll
@@ -673,11 +672,9 @@ D:\Rsystems_Project\Assignment\Assignment-Api\Assignment.Tests\bin\Debug\net8.0\
 D:\Rsystems_Project\Assignment\Assignment-Api\Assignment.Tests\bin\Debug\net8.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 D:\Rsystems_Project\Assignment\Assignment-Api\Assignment.Tests\bin\Debug\net8.0\Assignment.API.dll
 D:\Rsystems_Project\Assignment\Assignment-Api\Assignment.Tests\bin\Debug\net8.0\Assignment.Dto.dll
-D:\Rsystems_Project\Assignment\Assignment-Api\Assignment.Tests\bin\Debug\net8.0\Assignment.Framework.dll
 D:\Rsystems_Project\Assignment\Assignment-Api\Assignment.Tests\bin\Debug\net8.0\Assignment.Services.dll
 D:\Rsystems_Project\Assignment\Assignment-Api\Assignment.Tests\bin\Debug\net8.0\Assignment.API.pdb
 D:\Rsystems_Project\Assignment\Assignment-Api\Assignment.Tests\bin\Debug\net8.0\Assignment.API.xml
-D:\Rsystems_Project\Assignment\Assignment-Api\Assignment.Tests\bin\Debug\net8.0\Assignment.Framework.pdb
 D:\Rsystems_Project\Assignment\Assignment-Api\Assignment.Tests\bin\Debug\net8.0\Assignment.Services.pdb
 D:\Rsystems_Project\Assignment\Assignment-Api\Assignment.Tests\bin\Debug\net8.0\Assignment.Dto.pdb
 D:\Rsystems_Project\Assignment\Assignment-Api\Assignment.Tests\obj\Debug\net8.0\Assignment.Test.csproj.AssemblyReference.cache
@@ -698,3 +695,4 @@ D:\Rsystems_Project\Assignment\Assignment-Api\Assignment.Tests\bin\Debug\net8.0\
 D:\Rsystems_Project\Assignment\Assignment-Api\Assignment.Tests\bin\Debug\net8.0\Moq.dll
 D:\Rsystems_Project\Assignment\Assignment-Api\Assignment.Tests\bin\Debug\net8.0\AutoFixture.dll
 D:\Rsystems_Project\Assignment\Assignment-Api\Assignment.Tests\bin\Debug\net8.0\Fare.dll
+D:\Rsystems_Project\Assignment\Assignment-Api\Assignment.Tests\bin\Debug\net8.0\Microsoft.AspNetCore.TestHost.dll
